@@ -19,7 +19,7 @@ layui.use(['element', 'form', 'layer'], function () {
     function init() {
         loadData();
         bindEvents();
-        
+
         // 确保 LayUI 导航栏正确渲染
         element.render('nav');
     }
@@ -63,7 +63,26 @@ layui.use(['element', 'form', 'layer'], function () {
     // 加载角色数据
     async function loadRoles() {
         try {
-            const roleFiles = ['软件工程师'];
+            const roleFiles = [
+                '普通AI',
+                '软件工程师',
+                '数据分析师',
+                '产品经理',
+                'UI设计师',
+                '前端开发工程师',
+                '后端开发工程师',
+                '算法工程师',
+                '运维工程师',
+                '测试工程师',
+                '技术文档工程师',
+                '架构师',
+                '数据库管理员',
+                '安全工程师',
+                '项目经理',
+                '移动端开发工程师',
+                '技术支持工程师',
+                '硬件工程师'
+            ];
             for (const roleName of roleFiles) {
                 const res = await fetch(`data/roles/${roleName}.md`);
                 const content = await res.text();
@@ -80,7 +99,24 @@ layui.use(['element', 'form', 'layer'], function () {
     // 加载规则数据
     async function loadRules() {
         try {
-            const ruleFiles = ['强制中文', '置信度提示'];
+            const ruleFiles = [
+                '强制中文',
+                '置信度提示',
+                '别忘了调用工具',
+                '让小学生也能看懂',
+                '提供代码示例',
+                '分步骤详细说明',
+                '列举优缺点',
+                '提供实际案例',
+                '给出多种方案',
+                '简洁明了',
+                '使用表格对比',
+                '强调注意事项',
+                '给出最佳实践',
+                '提供学习资源',
+                '使用图表辅助',
+                '先总结后详述'
+            ];
             for (const ruleName of ruleFiles) {
                 const res = await fetch(`data/rules/${ruleName}.md`);
                 const content = await res.text();
@@ -117,7 +153,7 @@ layui.use(['element', 'form', 'layer'], function () {
         });
 
         // 搜索框内容变化时显示/隐藏清除按钮
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             if (this.value.trim()) {
                 clearBtn.style.display = 'block';
             } else {
@@ -126,7 +162,7 @@ layui.use(['element', 'form', 'layer'], function () {
         });
 
         // 清除搜索
-        clearBtn.addEventListener('click', function() {
+        clearBtn.addEventListener('click', function () {
             searchInput.value = '';
             currentSearchKeyword = '';
             clearBtn.style.display = 'none';
@@ -135,7 +171,7 @@ layui.use(['element', 'form', 'layer'], function () {
 
         // 分类筛选 - 使用原生 change 事件
         const categorySelect = document.getElementById('category-select');
-        categorySelect.addEventListener('change', function(e) {
+        categorySelect.addEventListener('change', function (e) {
             currentCategory = e.target.value;
             console.log('分类选择变化:', currentCategory);
             // 不立即触发筛选，等待用户点击搜索按钮
@@ -168,7 +204,7 @@ layui.use(['element', 'form', 'layer'], function () {
         } else if (tab === 'prompts') {
             document.getElementById('prompts-content').style.display = 'block';
         }
-        
+
         // 重新渲染导航，确保下划线正确显示
         element.render('nav');
     }
@@ -217,7 +253,7 @@ layui.use(['element', 'form', 'layer'], function () {
         ).join('');
 
         select.innerHTML = currentOptions + newOptions;
-        
+
         // 重新渲染 LayUI 的 select 组件
         form.render('select');
     }
@@ -332,9 +368,11 @@ layui.use(['element', 'form', 'layer'], function () {
 
         // 替换规则部分
         if (selectedRules.length > 0) {
+            // 直接显示完整的规则内容，不使用编号列表
             const rulesContent = selectedRules.map((rule, index) => {
                 return `${index + 1}. ${rule.content}`;
             }).join('\n\n');
+
             preview = preview.replace('{rules}', rulesContent);
         } else {
             preview = preview.replace('{rules}', '（请选择规则）');

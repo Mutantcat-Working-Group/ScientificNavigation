@@ -96,8 +96,19 @@
         "url": "https://arxiv.org/"
     },
     {
+        "title":"ORCID",
+        "icon":"https://orcid.org/assets/icons/favicon.ico",
+        "description":"ORCID是一个提供唯一学者标识符的平台，帮助研究人员管理和展示他们的学术成果。",
+        "keywords":[
+            "学者标识符",
+            "学术管理"
+        ],
+        "url":"https://orcid.org/"
+        
+    },
+    {
         "title": "中国国家知识产权局",
-        "icon": "./data/icons/ieee.jpg",
+        "icon": "./data/icons/gjzscqj.png",
         "description": "中国国家知识产权局是中国官方的知识产权资源平台，提供丰富的专利和科研资源。",
         "keywords": [
             "科学导航",
