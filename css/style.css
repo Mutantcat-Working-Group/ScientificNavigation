@@ -28,6 +28,7 @@ body {
 .header-nav .layui-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
 }
 
@@ -35,7 +36,6 @@ body {
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-    margin-right: 30px;
 }
 
 .header-nav .layui-nav {
