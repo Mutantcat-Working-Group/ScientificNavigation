@@ -115,7 +115,10 @@ layui.use(['element', 'form', 'layer'], function () {
                 '给出最佳实践',
                 '提供学习资源',
                 '使用图表辅助',
-                '先总结后详述'
+                '先总结后详述',
+                '说明引入文献',
+                '说明信息出处',
+                '引用权威资源'
             ];
             for (const ruleName of ruleFiles) {
                 const res = await fetch(`data/rules/${ruleName}.md`);
