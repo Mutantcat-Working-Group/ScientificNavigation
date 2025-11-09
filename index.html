@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科学导航 - 信息检索/AI提示词</title>
+    <meta name="description" content="科学导航 - 信息检索/AI提示词/免费科学资源/学术搜索">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta name="keywords" content="科学导航, 信息检索, AI提示词, 科学资源, 学术搜索">
+    <meta name="author" content="Mutantcat">
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- 头部导航 -->
+    <div class="layui-header header-nav">
+        <div class="layui-container">
+            <div class="layui-logo layui-hide-xs">科学导航</div>
+            <ul class="layui-nav layui-layout-left" lay-filter="nav">
+                <li class="layui-nav-item layui-this" data-tab="tools">
+                    <a href="javascript:;">工具索引</a>
+                </li>
+                <li class="layui-nav-item" data-tab="prompts">
+                    <a href="javascript:;">AI提示词</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 主体内容 -->
+    <div class="layui-container main-container">
+        <!-- 工具索引板块 -->
+        <div class="tab-content" id="tools-content">
+            <!-- 搜索和筛选区域 -->
+            <div class="search-area">
+                <div class="search-wrapper">
+                    <div class="search-input-wrapper">
+                        <i class="layui-icon layui-icon-search search-icon"></i>
+                        <input type="text" id="search-input" placeholder="搜索网站名称、关键词..." class="search-input">
+                        <i class="layui-icon layui-icon-close-fill clear-icon" id="clear-search" style="display: none;"></i>
+                    </div>
+                    <select id="category-select" lay-filter="category" class="category-select">
+                        <option value="">全部分类</option>
+                    </select>
+                    <button class="search-btn" id="search-btn">
+                        <i class="layui-icon layui-icon-search"></i>
+                        <span>搜索</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 网站卡片展示区域 -->
+            <div class="layui-row layui-col-space15" id="website-cards">
+                <!-- 卡片将通过JS动态生成 -->
+            </div>
+        </div>
+
+        <!-- AI提示词板块 -->
+        <div class="tab-content" id="prompts-content" style="display: none;">
+            <div class="layui-row layui-col-space15">
+                <!-- 角色选择 -->
+                <div class="layui-col-md12">
+                    <div class="prompt-section">
+                        <h3 class="section-title">选择角色（单选）</h3>
+                        <div id="roles-container" class="roles-container">
+                            <!-- 角色选项将通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 规则选择 -->
+                <div class="layui-col-md12">
+                    <div class="prompt-section">
+                        <h3 class="section-title">选择规则（可多选）</h3>
+                        <div id="rules-container" class="rules-container">
+                            <!-- 规则选项将通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 提示词预览 -->
+                <div class="layui-col-md12">
+                    <div class="prompt-section">
+                        <h3 class="section-title">提示词预览</h3>
+                        <div class="preview-container">
+                            <textarea id="prompt-preview" class="layui-textarea" readonly style="min-height: 300px;"></textarea>
+                        </div>
+                        <div class="layui-btn-container" style="margin-top: 15px;">
+                            <button class="layui-btn layui-btn-normal" id="copy-prompt-btn">
+                                <i class="layui-icon layui-icon-file"></i> 复制提示词
+                            </button>
+                            <button class="layui-btn layui-btn-primary" id="reset-prompt-btn">
+                                <i class="layui-icon layui-icon-refresh"></i> 重置选择
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="layui-footer footer">
+        <div class="layui-container">
+            <p>&copy; 2025 科学导航 by Mutantcat. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="javascript/layui.js"></script>
+    <script src="javascript/app.js"></script>
+</body>
+
+</html>

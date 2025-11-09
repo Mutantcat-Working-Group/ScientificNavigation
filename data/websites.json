@@ -1,0 +1,72 @@
+[
+    {
+        "title": "中国知网",
+        "icon": "https://www.cnki.net/favicon.ico",
+        "description": "中国知网是一个综合性的学术资源平台，提供丰富的学术论文、期刊、会议论文等资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资源。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "科学资源", "学术搜索"],
+        "url":"https://www.cnki.net/"
+    },
+    {
+        "title": "万方数据",
+        "icon": "http://www.wanfangdata.com.cn/favicon.ico",
+        "description": "万方数据是中国领先的学术资源平台，提供多种学术文献和科研资源，支持信息检索和AI提示词功能，助力用户快速找到所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术资源", "科研资料"],
+        "url":"http://www.wanfangdata.com.cn/"
+    },
+    {
+        "title": "维普资讯",
+        "icon": "http://www.cqvip.com/favicon.ico",
+        "description": "维普资讯是一个综合性的学术资源平台，提供丰富的学术论文、期刊和会议论文等资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资源。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术资源", "科研资料"],
+        "url":"http://www.cqvip.com/"
+    },
+    {
+        "title": "谷歌学术",
+        "icon": "https://scholar.google.com/favicon.ico",
+        "description": "谷歌学术是一个全球性的学术搜索引擎，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术搜索", "科研资源"],
+        "url":"https://scholar.google.com/"
+    },
+    {
+        "title": "ResearchGate",
+        "icon": "https://www.researchgate.net/favicon.ico",
+        "description": "ResearchGate是一个全球性的学术社交平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术社交", "科研资源"],
+        "url":"https://www.researchgate.net/"
+    },
+    {
+        "title": "PubMed",
+        "icon": "https://pubmed.ncbi.nlm.nih.gov/favicon.ico",
+        "description": "PubMed是一个免费的生物医学文献数据库，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "生物医学", "科研资源"],
+        "url":"https://pubmed.ncbi.nlm.nih.gov/"
+    },
+    {
+        "title": "arXiv",
+        "icon": "https://arxiv.org/favicon.ico",
+        "description": "arXiv是一个免费的预印本数据库，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "预印本", "科研资源"],
+        "url":"https://arxiv.org/"
+    },
+    {
+        "title": "ScienceDirect",
+        "icon": "https://www.sciencedirect.com/favicon.ico",
+        "description": "ScienceDirect是一个领先的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术资源", "科研资料"],
+        "url":"https://www.sciencedirect.com/"
+    },
+    {
+        "title": "SpringerLink",
+        "icon": "https://link.springer.com/favicon.ico",
+        "description": "SpringerLink是一个综合性的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术资源", "科研资料"],
+        "url":"https://link.springer.com/"
+    },
+    {
+        "title": "IEEE Xplore",
+        "icon": "https://ieeexplore.ieee.org/favicon.ico",
+        "description": "IEEE Xplore是一个领先的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
+        "keywords": ["科学导航", "信息检索", "AI提示词", "学术资源", "科研资料"],
+        "url":"https://ieeexplore.ieee.org/"
+    }
+]
