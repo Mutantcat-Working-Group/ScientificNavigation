@@ -2,71 +2,206 @@
     {
         "title": "中国知网",
         "icon": "https://www.cnki.net/favicon.ico",
-        "description": "中国知网是一个综合性的学术资源平台，提供丰富的学术论文、期刊、会议论文等资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资源。",
-        "keywords": ["科学导航", "信息检索", "科学资源", "学术搜索"],
-        "url":"https://www.cnki.net/"
+        "description": "中国知网是一个综合性的学术资源平台，提供丰富的学术论文、期刊、会议论文等资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "科学资源",
+            "学术搜索"
+        ],
+        "url": "https://www.cnki.net/"
     },
     {
         "title": "万方数据",
         "icon": "http://www.wanfangdata.com.cn/favicon.ico",
-        "description": "万方数据是中国领先的学术资源平台，提供多种学术文献和科研资源，支持信息检索和AI提示词功能，助力用户快速找到所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术资源", "科研资料"],
-        "url":"http://www.wanfangdata.com.cn/"
+        "description": "万方数据是中国领先的学术资源平台，提供多种学术文献和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "http://www.wanfangdata.com.cn/"
     },
     {
         "title": "维普资讯",
         "icon": "http://www.cqvip.com/favicon.ico",
-        "description": "维普资讯是一个综合性的学术资源平台，提供丰富的学术论文、期刊和会议论文等资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资源。",
-        "keywords": ["科学导航", "信息检索", "学术资源", "科研资料"],
-        "url":"http://www.cqvip.com/"
+        "description": "维普资讯是一个综合性的学术资源平台，提供丰富的学术论文、期刊和会议论文等资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "http://www.cqvip.com/"
     },
     {
-        "title": "谷歌学术",
-        "icon": "https://scholar.google.com/favicon.ico",
-        "description": "谷歌学术是一个全球性的学术搜索引擎，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术搜索", "科研资源"],
-        "url":"https://scholar.google.com/"
+        "title": "Ei Village",
+        "icon": "https://www.engineeringvillage.com/static/images/ei_x.png",
+        "description": "Ei Village是一个领先的工程技术学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "工程技术",
+            "科研资料"
+        ],
+        "url": "https://www.engineeringvillage.com/home.url"
     },
     {
-        "title": "ResearchGate",
-        "icon": "https://www.researchgate.net/favicon.ico",
-        "description": "ResearchGate是一个全球性的学术社交平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术社交", "科研资源"],
-        "url":"https://www.researchgate.net/"
+        "title": "Scopus",
+        "icon": "https://www.scopus.com/static/proteus-images/favicon.ico?ver=1.0",
+        "description": "Scopus是一个全球领先的学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://www.scopus.com/"
     },
     {
-        "title": "PubMed",
-        "icon": "https://pubmed.ncbi.nlm.nih.gov/favicon.ico",
-        "description": "PubMed是一个免费的生物医学文献数据库，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "生物医学", "科研资源"],
-        "url":"https://pubmed.ncbi.nlm.nih.gov/"
-    },
-    {
-        "title": "arXiv",
-        "icon": "https://arxiv.org/favicon.ico",
-        "description": "arXiv是一个免费的预印本数据库，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "预印本", "科研资源"],
-        "url":"https://arxiv.org/"
-    },
-    {
-        "title": "ScienceDirect",
-        "icon": "https://sdfestaticassets-us-east-1.sciencedirectassets.com/shared-assets/103/images/favSD.ico",
-        "description": "ScienceDirect是一个领先的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术资源", "科研资料"],
-        "url":"https://www.sciencedirect.com/"
-    },
-    {
-        "title": "SpringerLink",
-        "icon": "https://link.springer.com/oscar-static/img/favicons/darwin/apple-touch-icon-6ef0829b9c.png",
-        "description": "SpringerLink是一个综合性的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户高效获取所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术资源", "科研资料"],
-        "url":"https://link.springer.com/"
+        "title": "SCI-E/SSCI",
+        "icon": "https://access.clarivate.com/favicon.ico",
+        "description": "SCI-E/SSCI是国际知名的学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://mjl.clarivate.com/home"
     },
     {
         "title": "IEEE Xplore",
         "icon": "./data/icons/ieee.jpg",
-        "description": "IEEE Xplore是一个领先的学术资源平台，提供丰富的学术论文和科研资源，支持信息检索和AI提示词功能，帮助用户快速找到所需的科学资料。",
-        "keywords": ["科学导航", "信息检索", "学术资源", "科研资料"],
-        "url":"https://ieeexplore.ieee.org/"
+        "description": "IEEE Xplore是一个领先的学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://ieeexplore.ieee.org/"
+    },
+    {
+        "title": "arXiv",
+        "icon": "https://arxiv.org/favicon.ico",
+        "description": "arXiv是一个免费的预印本数据库，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "预印本",
+            "科研资源"
+        ],
+        "url": "https://arxiv.org/"
+    },
+    {
+        "title": "中国国家知识产权局",
+        "icon": "./data/icons/ieee.jpg",
+        "description": "中国国家知识产权局是中国官方的知识产权资源平台，提供丰富的专利和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "知识产权",
+            "科研资源",
+            "专利查询"
+        ],
+        "url": "http://www.cnipa.gov.cn/"
+    },
+    {
+        "title":"中国科学引文索引（CSCD）",
+        "icon":"./data/icons/zgkxywsy.png",
+        "description":"中国科学引文索引（CSCI）是中国科学技术领域的重要学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords":[
+            "科学导航",
+            "信息检索",
+            "科学技术",
+            "科研资源"
+        ],
+        "url":"http://www.cscd.ac.cn/"
+    },
+    {
+        "title": "谷歌学术",
+        "icon": "./data/icons/chrome-scholar.ico",
+        "description": "谷歌学术是一个全球性的学术搜索引擎，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术搜索",
+            "科研资源"
+        ],
+        "url": "https://scholar.google.com/"
+    },
+    {
+        "title": "ResearchGate",
+        "icon": "https://www.researchgate.net/favicon.ico",
+        "description": "ResearchGate是一个全球性的学术社交平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术社交",
+            "科研资源"
+        ],
+        "url": "https://www.researchgate.net/"
+    },
+    {
+        "title": "PubMed",
+        "icon": "https://pubmed.ncbi.nlm.nih.gov/favicon.ico",
+        "description": "PubMed是一个免费的生物医学文献数据库，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "生物医学",
+            "科研资源"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/"
+    },
+    {
+        "title": "ScienceDirect",
+        "icon": "https://sdfestaticassets-us-east-1.sciencedirectassets.com/shared-assets/103/images/favSD.ico",
+        "description": "ScienceDirect是一个领先的学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://www.sciencedirect.com/"
+    },
+    {
+        "title": "SpringerLink",
+        "icon": "https://link.springer.com/oscar-static/img/favicons/darwin/apple-touch-icon-6ef0829b9c.png",
+        "description": "SpringerLink是一个综合性的学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://link.springer.com/"
+    },
+    {
+        "title": "中文社会科学引文索引（CSSCI）",
+        "icon": "./data/icons/cssci.png",
+        "description": "中文社会科学引文索引（CSSCI）是中国社会科学领域的重要学术资源平台，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "社会科学",
+            "科研资源"
+        ],
+        "url": "http://cssci.nju.edu.cn/"
+    },
+    {
+        "title": "JSTOR",
+        "icon": "https://www.jstor.org/favicon.ico",
+        "description": "JSTOR是一个综合性的学术资源平台，提供丰富的学术论文、期刊和书籍等资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术资源",
+            "科研资料"
+        ],
+        "url": "https://www.jstor.org/"
     }
 ]
