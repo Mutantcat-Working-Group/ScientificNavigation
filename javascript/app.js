@@ -166,79 +166,6 @@ layui.use(['element', 'form', 'layer'], function () {
         }
     }
 
-    // 加载角色数据
-    async function loadRoles() {
-        try {
-            const roleFiles = [
-                '普通AI',
-                '软件工程师',
-                '数据分析师',
-                '产品经理',
-                'UI设计师',
-                '前端开发工程师',
-                '后端开发工程师',
-                '算法工程师',
-                '运维工程师',
-                '测试工程师',
-                '技术文档工程师',
-                '架构师',
-                '数据库管理员',
-                '安全工程师',
-                '项目经理',
-                '移动端开发工程师',
-                '技术支持工程师',
-                '硬件工程师'
-            ];
-            for (const roleName of roleFiles) {
-                const res = await fetch(`data/roles/${roleName}.md`);
-                const content = await res.text();
-                rolesData.push({
-                    name: roleName,
-                    content: content.replace(/```markdown\n?/g, '').replace(/```\n?/g, '').trim()
-                });
-            }
-        } catch (error) {
-            console.error('加载角色数据失败:', error);
-        }
-    }
-
-    // 加载规则数据
-    async function loadRules() {
-        try {
-            const ruleFiles = [
-                '强制中文',
-                '置信度提示',
-                '别忘了调用工具',
-                '让小学生也能看懂',
-                '提供代码示例',
-                '分步骤详细说明',
-                '列举优缺点',
-                '提供实际案例',
-                '给出多种方案',
-                '简洁明了',
-                '使用表格对比',
-                '强调注意事项',
-                '给出最佳实践',
-                '提供学习资源',
-                '使用图表辅助',
-                '先总结后详述',
-                '说明引入文献',
-                '说明信息出处',
-                '引用权威资源'
-            ];
-            for (const ruleName of ruleFiles) {
-                const res = await fetch(`data/rules/${ruleName}.md`);
-                const content = await res.text();
-                rulesData.push({
-                    name: ruleName,
-                    content: content.replace(/```markdown\n?/g, '').replace(/```\n?/g, '').trim()
-                });
-            }
-        } catch (error) {
-            console.error('加载规则数据失败:', error);
-        }
-    }
-
     // 绑定事件
     function bindEvents() {
         // 导航切换
@@ -583,6 +510,4 @@ layui.use(['element', 'form', 'layer'], function () {
 
         layer.msg('已重置选择', { icon: 1 });
     }
-
-    // 删除旧的 loadRoles 和 loadRules 函数（已不需要）
 });
