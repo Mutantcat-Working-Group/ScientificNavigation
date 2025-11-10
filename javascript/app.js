@@ -12,6 +12,7 @@ layui.use(['element', 'form', 'layer'], function () {
     let selectedRules = [];
     let currentSearchKeyword = ''; // 当前搜索关键词
     let currentCategory = ''; // 当前选中的分类
+    let promptDataLoaded = false; // 标记提示词数据是否已加载
 
     // 初始化应用
     init();
@@ -24,12 +25,37 @@ layui.use(['element', 'form', 'layer'], function () {
         element.render('nav');
     }
 
-    // 加载所有数据
+    // 加载所有数据（优化版：分步加载）
     async function loadData() {
         try {
-            // 加载网站数据
+            // 优先加载和显示网站数据（主要内容）
             const websitesRes = await fetch('data/websites.json');
             websitesData = await websitesRes.json();
+
+            // 立即渲染网站卡片，让用户快速看到内容
+            renderWebsiteCards(websitesData);
+
+            // 生成分类选项
+            generateCategories();
+
+            // 提示词相关数据延迟加载，不阻塞页面显示
+            // 这些数据只在用户切换到AI提示词标签时才需要
+
+        } catch (error) {
+            console.error('加载数据失败:', error);
+            layer.msg('数据加载失败，请刷新页面重试', { icon: 5 });
+        }
+    }
+
+    // 延迟加载提示词数据
+    async function loadPromptData() {
+        if (promptDataLoaded) {
+            return; // 已经加载过，直接返回
+        }
+
+        try {
+            // 显示加载提示
+            const loadingIndex = layer.load(1, { shade: [0.1, '#fff'] });
 
             // 加载提示词模板
             const promptRes = await fetch('data/prompts.md');
@@ -41,12 +67,6 @@ layui.use(['element', 'form', 'layer'], function () {
             // 加载规则数据
             await loadRules();
 
-            // 渲染网站卡片
-            renderWebsiteCards(websitesData);
-
-            // 生成分类选项
-            generateCategories();
-
             // 渲染角色和规则选项
             renderRoles();
             renderRules();
@@ -54,9 +74,14 @@ layui.use(['element', 'form', 'layer'], function () {
             // 更新提示词预览
             updatePromptPreview();
 
+            promptDataLoaded = true;
+
+            // 关闭加载提示
+            layer.close(loadingIndex);
+
         } catch (error) {
-            console.error('加载数据失败:', error);
-            layer.msg('数据加载失败，请刷新页面重试', { icon: 5 });
+            console.error('加载提示词数据失败:', error);
+            layer.msg('提示词数据加载失败，请重试', { icon: 5 });
         }
     }
 
@@ -206,6 +231,8 @@ layui.use(['element', 'form', 'layer'], function () {
             document.getElementById('tools-content').style.display = 'block';
         } else if (tab === 'prompts') {
             document.getElementById('prompts-content').style.display = 'block';
+            // 切换到提示词标签时，才加载提示词数据
+            loadPromptData();
         }
 
         // 重新渲染导航，确保下划线正确显示
