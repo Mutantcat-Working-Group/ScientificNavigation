@@ -84,6 +84,18 @@
         "url": "https://mjl.clarivate.com/home"
     },
     {
+        "title": "ProQuest（PQDT Global）",
+        "icon": "https://www.proquest.com/apple-icon-152x152.png",
+        "description": "PQDT Global是一个全球性的学位论文数据库，提供丰富的学术论文和科研资源。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学位论文",
+            "科研资源"
+        ],
+        "url": "https://www.proquest.com/"
+    },
+    {
         "title": "IEEE Xplore",
         "icon": "./data/icons/ieee.jpg",
         "description": "IEEE Xplore是一个领先的学术资源平台，提供丰富的学术论文和科研资源。",
@@ -165,18 +177,6 @@
             "科研资料"
         ],
         "url": "https://esi.clarivate.com/"
-    },
-    {
-        "title": "PQDT Global",
-        "icon": "https://www.proquest.com/apple-icon-152x152.png",
-        "description": "PQDT Global是一个全球性的学位论文数据库，提供丰富的学术论文和科研资源。",
-        "keywords": [
-            "科学导航",
-            "信息检索",
-            "学位论文",
-            "科研资源"
-        ],
-        "url": "https://www.proquest.com/"
     },
     {
         "title": "谷歌学术",
