@@ -5,14 +5,59 @@ layui.use(['element', 'form', 'layer'], function () {
 
     // 全局数据存储
     let websitesData = [];
-    let rolesData = [];
-    let rulesData = [];
+    let rolesData = []; // 存储完整的角色数据
+    let rulesData = []; // 存储完整的规则数据
     let promptTemplate = '';
     let selectedRole = null;
     let selectedRules = [];
     let currentSearchKeyword = ''; // 当前搜索关键词
     let currentCategory = ''; // 当前选中的分类
     let promptDataLoaded = false; // 标记提示词数据是否已加载
+    let isLoadingPromptContent = false; // 标记是否正在加载提示词内容
+
+    // 角色和规则列表（只包含名称）
+    const roleNames = [
+        '普通AI',
+        '软件工程师',
+        '数据分析师',
+        '产品经理',
+        'UI设计师',
+        '前端开发工程师',
+        '后端开发工程师',
+        '算法工程师',
+        '运维工程师',
+        '测试工程师',
+        '技术文档工程师',
+        '架构师',
+        '数据库管理员',
+        '安全工程师',
+        '项目经理',
+        '移动端开发工程师',
+        '技术支持工程师',
+        '硬件工程师'
+    ];
+
+    const ruleNames = [
+        '强制中文',
+        '置信度提示',
+        '别忘了调用工具',
+        '让小学生也能看懂',
+        '提供代码示例',
+        '分步骤详细说明',
+        '列举优缺点',
+        '提供实际案例',
+        '给出多种方案',
+        '简洁明了',
+        '使用表格对比',
+        '强调注意事项',
+        '给出最佳实践',
+        '提供学习资源',
+        '使用图表辅助',
+        '先总结后详述',
+        '说明引入文献',
+        '说明信息出处',
+        '引用权威资源'
+    ];
 
     // 初始化应用
     init();
@@ -54,20 +99,11 @@ layui.use(['element', 'form', 'layer'], function () {
         }
 
         try {
-            // 显示加载提示
-            const loadingIndex = layer.load(1, { shade: [0.1, '#fff'] });
-
             // 加载提示词模板
             const promptRes = await fetch('data/prompts.md');
             promptTemplate = await promptRes.text();
 
-            // 加载角色数据
-            await loadRoles();
-
-            // 加载规则数据
-            await loadRules();
-
-            // 渲染角色和规则选项
+            // 先渲染角色和规则列表（只显示名称，不加载内容）
             renderRoles();
             renderRules();
 
@@ -76,12 +112,57 @@ layui.use(['element', 'form', 'layer'], function () {
 
             promptDataLoaded = true;
 
-            // 关闭加载提示
-            layer.close(loadingIndex);
-
         } catch (error) {
             console.error('加载提示词数据失败:', error);
             layer.msg('提示词数据加载失败，请重试', { icon: 5 });
+        }
+    }
+
+    // 按需加载单个角色内容
+    async function loadRoleContent(roleName) {
+        // 检查是否已经加载过
+        const existingRole = rolesData.find(r => r.name === roleName);
+        if (existingRole) {
+            return existingRole;
+        }
+
+        try {
+            const res = await fetch(`data/roles/${roleName}.md`);
+            const content = await res.text();
+            const role = {
+                name: roleName,
+                content: content.replace(/```markdown\n?/g, '').replace(/```\n?/g, '').trim()
+            };
+            rolesData.push(role);
+            return role;
+        } catch (error) {
+            console.error(`加载角色 ${roleName} 失败:`, error);
+            layer.msg(`加载角色失败: ${roleName}`, { icon: 5 });
+            return null;
+        }
+    }
+
+    // 按需加载单个规则内容
+    async function loadRuleContent(ruleName) {
+        // 检查是否已经加载过
+        const existingRule = rulesData.find(r => r.name === ruleName);
+        if (existingRule) {
+            return existingRule;
+        }
+
+        try {
+            const res = await fetch(`data/rules/${ruleName}.md`);
+            const content = await res.text();
+            const rule = {
+                name: ruleName,
+                content: content.replace(/```markdown\n?/g, '').replace(/```\n?/g, '').trim()
+            };
+            rulesData.push(rule);
+            return rule;
+        } catch (error) {
+            console.error(`加载规则 ${ruleName} 失败:`, error);
+            layer.msg(`加载规则失败: ${ruleName}`, { icon: 5 });
+            return null;
         }
     }
 
@@ -328,65 +409,98 @@ layui.use(['element', 'form', 'layer'], function () {
         performFilter();
     }
 
-    // 渲染角色选项
+    // 渲染角色选项（只渲染名称列表）
     function renderRoles() {
         const container = document.getElementById('roles-container');
-        container.innerHTML = rolesData.map((role, index) => `
-            <div class="role-item" data-index="${index}">
-                <div class="role-name">${role.name}</div>
+        container.innerHTML = roleNames.map((roleName, index) => `
+            <div class="role-item" data-name="${roleName}">
+                <div class="role-name">${roleName}</div>
             </div>
         `).join('');
 
         // 绑定点击事件
         container.querySelectorAll('.role-item').forEach(item => {
-            item.addEventListener('click', function () {
+            item.addEventListener('click', async function () {
+                const roleName = this.getAttribute('data-name');
+                
                 // 移除其他角色的选中状态
                 container.querySelectorAll('.role-item').forEach(i => i.classList.remove('active'));
                 // 添加当前角色的选中状态
                 this.classList.add('active');
-                // 更新选中的角色
-                selectedRole = rolesData[this.getAttribute('data-index')];
-                // 更新预览
-                updatePromptPreview();
+                
+                // 禁用复制按钮，开始加载
+                setLoadingState(true);
+                
+                // 按需加载角色内容
+                const role = await loadRoleContent(roleName);
+                if (role) {
+                    selectedRole = role;
+                    await updatePromptPreview();
+                }
+                
+                // 加载完成，启用复制按钮
+                setLoadingState(false);
             });
         });
     }
 
-    // 渲染规则选项
+    // 渲染规则选项（只渲染名称列表）
     function renderRules() {
         const container = document.getElementById('rules-container');
-        container.innerHTML = rulesData.map((rule, index) => `
-            <div class="rule-item" data-index="${index}">
-                <div class="rule-name">${rule.name}</div>
+        container.innerHTML = ruleNames.map((ruleName, index) => `
+            <div class="rule-item" data-name="${ruleName}">
+                <div class="rule-name">${ruleName}</div>
             </div>
         `).join('');
 
         // 绑定点击事件
         container.querySelectorAll('.rule-item').forEach(item => {
-            item.addEventListener('click', function () {
-                const index = parseInt(this.getAttribute('data-index'));
-                const rule = rulesData[index];
-
+            item.addEventListener('click', async function () {
+                const ruleName = this.getAttribute('data-name');
+                
                 // 切换选中状态
                 this.classList.toggle('active');
-
-                // 更新选中的规则列表
+                
+                // 禁用复制按钮，开始加载
+                setLoadingState(true);
+                
                 if (this.classList.contains('active')) {
-                    if (!selectedRules.find(r => r.name === rule.name)) {
+                    // 按需加载规则内容
+                    const rule = await loadRuleContent(ruleName);
+                    if (rule && !selectedRules.find(r => r.name === rule.name)) {
                         selectedRules.push(rule);
                     }
                 } else {
-                    selectedRules = selectedRules.filter(r => r.name !== rule.name);
+                    // 移除规则
+                    selectedRules = selectedRules.filter(r => r.name !== ruleName);
                 }
-
-                // 更新预览
-                updatePromptPreview();
+                
+                await updatePromptPreview();
+                
+                // 加载完成，启用复制按钮
+                setLoadingState(false);
             });
         });
     }
 
+    // 设置加载状态（禁用/启用复制按钮）
+    function setLoadingState(loading) {
+        isLoadingPromptContent = loading;
+        const copyBtn = document.getElementById('copy-prompt-btn');
+        
+        if (loading) {
+            copyBtn.disabled = true;
+            copyBtn.classList.add('layui-btn-disabled');
+            copyBtn.innerHTML = '<i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i> 加载中...';
+        } else {
+            copyBtn.disabled = false;
+            copyBtn.classList.remove('layui-btn-disabled');
+            copyBtn.innerHTML = '<i class="layui-icon layui-icon-file"></i> 复制提示词';
+        }
+    }
+
     // 更新提示词预览
-    function updatePromptPreview() {
+    async function updatePromptPreview() {
         let preview = promptTemplate;
 
         // 替换角色部分
@@ -413,6 +527,12 @@ layui.use(['element', 'form', 'layer'], function () {
 
     // 复制提示词
     function copyPrompt() {
+        // 如果正在加载内容，不允许复制
+        if (isLoadingPromptContent) {
+            layer.msg('正在加载内容，请稍候...', { icon: 16 });
+            return;
+        }
+
         const preview = document.getElementById('prompt-preview');
         const text = preview.value;
 
@@ -457,7 +577,12 @@ layui.use(['element', 'form', 'layer'], function () {
 
         // 更新预览
         updatePromptPreview();
+        
+        // 确保复制按钮恢复正常状态
+        setLoadingState(false);
 
         layer.msg('已重置选择', { icon: 1 });
     }
+
+    // 删除旧的 loadRoles 和 loadRules 函数（已不需要）
 });
