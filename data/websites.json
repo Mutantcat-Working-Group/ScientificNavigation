@@ -251,6 +251,18 @@
         "url": "http://cssci.nju.edu.cn/"
     },
     {
+        "title":"波尔",
+        "icon":"https://cdn1.deepmd.net/bohrium/web/images/8c4ab8c9/browser-fav.png",
+        "description":"玻尔号称全球科学家的 AI for Science 空间站，是一个严谨的学术性AI工具。",
+        "keywords": [
+            "科学导航",
+            "信息检索",
+            "学术AI",
+            "科研资源"
+        ],
+        "url": "https://www.bohrium.com/"
+    },
+    {
         "title": "JSTOR",
         "icon": "https://www.jstor.org/favicon.ico",
         "description": "JSTOR是一个综合性的学术资源平台，提供丰富的学术论文、期刊和书籍等资源。",
