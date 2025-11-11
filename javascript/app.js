@@ -12,8 +12,9 @@ layui.use(['element', 'form', 'layer'], function () {
     let selectedRules = [];
     let currentSearchKeyword = ''; // 当前搜索关键词
     let currentCategory = ''; // 当前选中的分类
-    let promptDataLoaded = false; // 标记提示词数据是否已加载
-    let isLoadingPromptContent = false; // 标记是否正在加载提示词内容
+    let promptDataLoaded = false; // 标记提示词页面基础数据（列表）是否已加载
+    let isLoadingPromptContent = false; // 标记是否正在加载单个提示内容（角色/规则）
+    let isTemplateLoaded = false; // 标记提示词模板是否已加载
 
     // 角色和规则列表（只包含名称）
     const roleNames = [
@@ -97,26 +98,28 @@ layui.use(['element', 'form', 'layer'], function () {
     // 延迟加载提示词数据
     async function loadPromptData() {
         if (promptDataLoaded) {
-            return; // 已经加载过，直接返回
+            return; // 已经加载过列表，直接返回
         }
 
+        // 1) 立即渲染列表，让界面先可用
+        renderRoles();
+        renderRules();
+        updatePromptPreview();
+        promptDataLoaded = true;
+
+        // 2) 异步加载模板，不阻塞界面
         try {
-            // 加载提示词模板
+            isTemplateLoaded = false;
+            setLoadingState(true); // 模板加载期间禁用复制按钮
             const promptRes = await fetch('data/prompts.md');
             promptTemplate = await promptRes.text();
-
-            // 先渲染角色和规则列表（只显示名称，不加载内容）
-            renderRoles();
-            renderRules();
-
-            // 更新提示词预览
-            updatePromptPreview();
-
-            promptDataLoaded = true;
-
+            isTemplateLoaded = true;
+            updatePromptPreview(); // 模板就绪后刷新预览
         } catch (error) {
-            console.error('加载提示词数据失败:', error);
-            layer.msg('提示词数据加载失败，请重试', { icon: 5 });
+            console.error('加载提示词模板失败:', error);
+            layer.msg('提示词模板加载失败，预览将使用默认格式', { icon: 0 });
+        } finally {
+            setLoadingState(false);
         }
     }
 
@@ -430,25 +433,25 @@ layui.use(['element', 'form', 'layer'], function () {
 
     // 更新提示词预览
     async function updatePromptPreview() {
-        let preview = promptTemplate;
+        let preview = '';
 
-        // 替换角色部分
-        if (selectedRole) {
-            preview = preview.replace('{roles}', selectedRole.content);
+        if (isTemplateLoaded && promptTemplate) {
+            // 使用模板渲染
+            preview = promptTemplate;
+            preview = preview.replace('{roles}', selectedRole ? selectedRole.content : '（请选择一个角色）');
+            if (selectedRules.length > 0) {
+                const rulesContent = selectedRules.map((rule, index) => `${index + 1}. ${rule.content}`).join('\n\n');
+                preview = preview.replace('{rules}', rulesContent);
+            } else {
+                preview = preview.replace('{rules}', '（请选择规则）');
+            }
         } else {
-            preview = preview.replace('{roles}', '（请选择一个角色）');
-        }
-
-        // 替换规则部分
-        if (selectedRules.length > 0) {
-            // 直接显示完整的规则内容，不使用编号列表
-            const rulesContent = selectedRules.map((rule, index) => {
-                return `${index + 1}. ${rule.content}`;
-            }).join('\n\n');
-
-            preview = preview.replace('{rules}', rulesContent);
-        } else {
-            preview = preview.replace('{rules}', '（请选择规则）');
+            // 模板未就绪，使用简易占位渲染，避免空白
+            const rolePart = selectedRole ? selectedRole.content : '（请选择一个角色）';
+            const rulesPart = selectedRules.length > 0
+                ? selectedRules.map((rule, index) => `${index + 1}. ${rule.content}`).join('\n\n')
+                : '（请选择规则）';
+            preview = `【提示词模板加载中，已为你展示简易预览】\n\n---- 角色 ----\n${rolePart}\n\n---- 规则 ----\n${rulesPart}`;
         }
 
         document.getElementById('prompt-preview').value = preview;
@@ -456,9 +459,13 @@ layui.use(['element', 'form', 'layer'], function () {
 
     // 复制提示词
     function copyPrompt() {
-        // 如果正在加载内容，不允许复制
+        // 正在加载内容或模板未就绪时，不允许复制
         if (isLoadingPromptContent) {
             layer.msg('正在加载内容，请稍候...', { icon: 16 });
+            return;
+        }
+        if (!isTemplateLoaded) {
+            layer.msg('提示词模板正在加载，请稍候...', { icon: 16 });
             return;
         }
 

@@ -308,6 +308,39 @@ button {
     border-radius: 3px;
 }
 
+/* 保证同一行的卡片高度一致（把列容器设为伸展，并让卡片占满列高度） */
+#website-cards {
+    display: flex;
+    flex-wrap: wrap;
+    /* 让 LayUI 的间距保留（layui-col-space15）同时启用 flex 拉伸 */
+}
+
+#website-cards > div[class*="layui-col-"] {
+    display: flex;
+    flex-direction: column;
+    /* 每个列项在一行内高度应与同一行的其他列对齐 */
+}
+
+#website-cards .website-card {
+    /* 让卡片填充列高度，配合上面的列容器可实现等高卡片 */
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 当窗口较小（移动端）时，保持原来的堆叠行为 */
+@media screen and (max-width: 768px) {
+    #website-cards {
+        display: block;
+    }
+    #website-cards > div[class*="layui-col-"] {
+        display: block;
+    }
+    #website-cards .website-card {
+        flex: none;
+    }
+}
+
 /* AI提示词板块 */
 .prompt-section {
     background: #fff;
